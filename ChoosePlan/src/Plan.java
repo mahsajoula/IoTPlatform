@@ -5,7 +5,7 @@ public class Plan extends Database implements DatabaseImp {
      String duration;
      String PicAddress;
      String userId;
-    
+
      public Plan(String userId,String planId) {
          super();
          this.userId = userId;
@@ -27,16 +27,26 @@ public class Plan extends Database implements DatabaseImp {
     //      return userId;
     //  }
      public void setData(String name ,float Price , String duration, String PicAddress ){
-         this.insert("insert into Plans values ("+ name +','+ price + "," + duration +","+ PicAddress +")")
+         
      }
-     public void updateData(Object ){
-         this.update("update Plans where id="+this.id+"set")
+     public void updateData(String planId,String column , Stirng value ){
+         Object plan = new Object();
+         plan = this.update("update Plans set"+ column +"="+value+"where id="+ planId)
+         this.name = plan.name;
+         this.price = plan.price;
+         this.duration = plan.duration;
+         this.PicAddress = plan.PicAddress;
      }
      public void deleteData(){
-         this.delete("delete from Plans where id="+this.id)
+         
      }
      public void getData(){
-         this.select("select * from Plans where id="+this.id)
+         Object plan = new Object();
+         plan = this.select("select * from Plans where id="+this.id)
+         this.name = plan.name;
+         this.price = plan.price;
+         this.duration = plan.duration;
+         this.PicAddress = plan.PicAddress;
 
      }
 
