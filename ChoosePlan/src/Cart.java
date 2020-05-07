@@ -42,7 +42,7 @@ public class Cart extends Database implements DatabaseImp {
 
     public boolean deletePlan(String planID) {
         for (Plan plan : plans) {
-            if (plan.planID == planID) {
+            if (plan.id == planID) {
                 this.plans.remove(plan);
                 return true;
             }
@@ -51,13 +51,44 @@ public class Cart extends Database implements DatabaseImp {
     }
 
     public boolean deleteAddOn(String addOnID) {
-        for (Plan addOn : addOns) {
-            if (addOn.addOnID == addOnID) {
+        for (AddOn addOn : this.addOns) {
+            if (addOn.id == addOnID) {
                 this.plans.remove(addOn);
                 return true;
             }
         }
         return false;
+    }
+
+    @override
+    public void setData(Cart Data) {
+        this.insert("INSERT INTO Cart VALUES (" + Data.cartID + Data.userID + Data.plans + Data.addOns + Data.totalPrice + ")");
+    }
+
+    @override
+    public void updateData(String id, String column, String value) {
+        Cart cart = (Cart) this.update("UPDATE Plans SET" + column + "=" + value + "WHERE id =" + id);
+        this.cartID = cart.cartID;
+        this.userID = cart.userID;
+        this.plans = cart.plans;
+        this.addOns = cart.addOns;
+        this.totalPrice = cart.totalPrice;
+    }
+
+    @override
+    public void deleteData(Cart Data) {
+
+    }
+
+    @override
+    public void getData(Cart Data) {
+        Cart cart = (Cart) this.read("SELECT * FROM Cart WHERE cartID = " + Data.cartID);
+        this.cartID = cart.cartID;
+        this.userID = cart.userID;
+        this.plans = cart.plans;
+        this.addOns = cart.addOns;
+        this.totalPrice = cart.totalPrice;
+
     }
 
 }
