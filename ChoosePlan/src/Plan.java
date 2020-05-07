@@ -6,9 +6,8 @@ public class Plan extends Database implements DatabaseImp {
     String PicAddress;
     String userId;
 
-    public Plan(String userId, String planId) {
+    public Plan(String planId) {
         super();
-        this.userId = userId;
         this.id = planId;
     }
 
