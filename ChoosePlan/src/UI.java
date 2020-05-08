@@ -1,5 +1,5 @@
 public class UI {
-SubscriptionController ob=new SubscriptionController(); // creating an Object
+	SubscriptionController ob=new SubscriptionController(); // creating an Object
 	static void ChoosePlan(){
 		try{
 			boolean SubscriptionsAndPlansLists=ob.getSubscriptionsAndPlans(); //calling first method
